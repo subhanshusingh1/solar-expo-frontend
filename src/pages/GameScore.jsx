@@ -17,25 +17,28 @@ const GameScore = () => {
     useEffect(() => {        
         const submitScore = async () => {
             try {
-                if (phone && score) {
-                    console.log('Submitting score:', { phone, score, gameType });
-        
-                    await axios.post(API_ENDPOINTS.saveScore, {
-                        phone,
-                        score: parseInt(score, 10), // Ensure the score is converted to an integer
-                        gameType,
-                    });
-        
-                    console.log('Score submitted successfully');
+                if (!score || !playerName || !gameType) {
+                    console.error('Missing required fields:', { score, playerName, gameType });
+                    return;
                 }
+
+                console.log('Submitting score:', { playerName, score, gameType });
+    
+                await axios.post(API_ENDPOINTS.saveScore, {
+                    playerName,  // required by Score model
+                    score: parseInt(score, 10),  // required by Score model
+                    gameType,    // required by Score model
+                    phone        // optional - for user identification
+                });
+    
+                console.log('Score submitted successfully');
             } catch (error) {
-                console.error('Error submitting score:', error);
+                console.error('Error submitting score:', error.response?.data || error.message);
             }
         };
-        
 
         submitScore();
-    }, [score, phone, gameType]);
+    }, [score, playerName, gameType]);
 
     const handleViewLeaderboard = () => {
         navigate('/leaderboard');
