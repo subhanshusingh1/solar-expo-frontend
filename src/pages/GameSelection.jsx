@@ -137,7 +137,7 @@ const GameSelection = () => {
                                         <h3 className="text-xl font-bold text-green-600">How to Play</h3>
                                     </div>
                                     <div className="space-y-4">
-                                        <p className="text-gray-600">1. Use arrow keys or space to jump and collect suns</p>
+                                        <p className="text-gray-600">1. Tap on screen to make character jump and collect suns</p>
                                         <p className="text-gray-600">2. After completing the game, you'll receive a unique code</p>
                                         <p className="text-gray-600">3. Enter that code below the game to submit your score</p>
                                         <p className="text-gray-600">4. Check the leaderboard to see how you rank!</p>
