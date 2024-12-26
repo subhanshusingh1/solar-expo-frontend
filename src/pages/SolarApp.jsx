@@ -136,7 +136,7 @@ const SolarApp = () => {
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition-all hover:scale-105"
           >
-            Start Game
+            Register
           </button>
         </form>
 
