@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Trophy } from 'lucide-react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { API_ENDPOINTS } from './config/api'; // Adjust the 
+import { API_ENDPOINTS } from '../config/api.js'; // Adjust the 
 
 const GameScore = () => {
     const { score } = useParams();
