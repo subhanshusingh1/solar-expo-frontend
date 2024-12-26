@@ -21,6 +21,10 @@ const GameSelection = () => {
 
     const handleGameClick = (game) => {
         setSelectedGame(game);
+        if (game === 'solarTap') {
+            navigate('/game', { state: { gameType: game } });
+            return;
+        }
         setShowInstructions(true);
     };
 
@@ -50,8 +54,12 @@ const GameSelection = () => {
             return;
         }
 
-        // Navigate to score page with game type
-        navigate(`/score/${score}`, { state: { gameType: 'SolarJump' } });
+        // Navigate to score page with the selected game type
+        navigate(`/score/${score}`, { 
+            state: { 
+                gameType: selectedGame 
+            } 
+        });
     };
 
     const handleBack = () => {
@@ -60,11 +68,6 @@ const GameSelection = () => {
         setCodeError('');
         setShowInstructions(true);
     };
-
-    if (selectedGame === 'solarTap') {
-        navigate('/game');
-        return null;
-    }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12">
