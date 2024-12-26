@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_ENDPOINTS } from '../config/api';
+import VideoIntro from '../components/VideoIntro';
 
 const SolarApp = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', city: '' });
   const [currentField, setCurrentField] = useState(0);
   const [errors, setErrors] = useState({});
+  const [showVideo, setShowVideo] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -49,8 +51,8 @@ const SolarApp = () => {
         localStorage.setItem('playerName', formData.name);
         localStorage.setItem('phone', formData.phone);
         
-        // Navigate to game selection
-        navigate('/game-selection');
+        // Show video instead of navigating directly
+        setShowVideo(true);
       } else {
         setErrors(prev => ({ ...prev, submit: 'Registration failed' }));
       }
@@ -63,6 +65,16 @@ const SolarApp = () => {
       }
     }
   };
+
+  const handleVideoEnd = () => {
+    setShowVideo(false);
+    navigate('/game-selection');
+  };
+
+  // If video is showing, render the VideoIntro component
+  if (showVideo) {
+    return <VideoIntro onVideoEnd={handleVideoEnd} />;
+  }
 
   const fields = [
     { name: 'name', label: 'Name', type: 'text' },
@@ -124,7 +136,7 @@ const SolarApp = () => {
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition-all hover:scale-105"
           >
-            Register
+            Start Game
           </button>
         </form>
 
