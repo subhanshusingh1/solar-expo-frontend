@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_ENDPOINTS } from '../config/api';
-import VideoIntro from '../components/VideoIntro';
+import VideoIntro from './VideoIntro';
 
 const SolarApp = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', city: '' });
