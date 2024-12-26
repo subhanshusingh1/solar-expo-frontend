@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Sun } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AnimatedScore = ({ score }) => {
     const [isAnimating, setIsAnimating] = useState(false);
@@ -20,6 +20,8 @@ const AnimatedScore = ({ score }) => {
 
 const Game = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const gameType = location.state?.gameType;
     const [score, setScore] = useState(0);
     const [timeLeft, setTimeLeft] = useState(15);
     const [isActive, setIsActive] = useState(true);
@@ -27,13 +29,20 @@ const Game = () => {
     const [isPanelGlowing, setIsPanelGlowing] = useState(false);
     const [gameEnded, setGameEnded] = useState(false);
 
+    useEffect(() => {
+        if (!gameType) {
+            navigate('/game-selection');  // Redirect if no game type
+            return;
+        }
+    }, [gameType, navigate]);
+
     const handleGameEnd = useCallback(() => {
         if (gameEnded) return; // Prevent multiple endings
         setGameEnded(true);
         setIsActive(false);
         // Navigate to score page with the final score and game type
-        navigate(`/score/${score}`, { state: { gameType: 'SolarTap' } });
-    }, [score, navigate, gameEnded]);
+        navigate(`/score/${score}`, { state: { gameType } });
+    }, [score, navigate, gameEnded, gameType]);
 
     useEffect(() => {
         if (timeLeft <= 0 && !gameEnded) {
