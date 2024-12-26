@@ -154,16 +154,18 @@ const GameSelection = () => {
 
                         <div className="flex flex-col items-center space-y-6">
                             {/* Responsive iframe container */}
-                            <div className="w-full max-w-5xl aspect-[16/9] relative">
+                            <div className="w-full max-w-3xl aspect-[485/402] relative">
                                 <iframe 
                                     src="https://scratch.mit.edu/projects/1113936471/embed" 
                                     allowTransparency="true"
                                     frameBorder="0" 
                                     scrolling="no" 
                                     allowFullScreen
-                                    className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                                    className="absolute top-0 left-0 w-full h-full"
                                 />
                             </div>
+
+                            
 
                             <form onSubmit={handleCodeSubmit} className="w-full max-w-md space-y-4">
                                 <div>
