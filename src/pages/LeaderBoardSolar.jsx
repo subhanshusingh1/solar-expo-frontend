@@ -83,10 +83,9 @@ const LeaderBoardSolar = () => {
                             <table className="w-full">
                                 <thead>
                                     <tr className="bg-green-50">
-                                        <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Rank</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Place</th>
                                         <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Player</th>
                                         <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Score</th>
-                                        <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Date</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -98,25 +97,15 @@ const LeaderBoardSolar = () => {
                                             } transition-colors`}
                                         >
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <span className={`font-semibold ${
-                                                        index === 0 ? 'text-yellow-500' :
-                                                        index === 1 ? 'text-gray-400' :
-                                                        index === 2 ? 'text-yellow-700' :
-                                                        'text-gray-600'
-                                                    }`}>
-                                                        {index + 1}
-                                                    </span>
+                                                <div className="text-sm font-medium text-gray-900">
+                                                    {index + 1}
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {score.playerName}
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{score.playerName}</div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-600">
-                                                {score.score}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {new Date(score.createdAt).toLocaleDateString()}
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{score.score}</div>
                                             </td>
                                         </tr>
                                     ))}
