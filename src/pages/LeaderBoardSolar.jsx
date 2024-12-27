@@ -17,7 +17,7 @@ const LeaderBoardSolar = () => {
                 const response = await axios.get(API_ENDPOINTS.leaderboard);
                 console.log('Raw response:', response);
                 console.log('Leaderboard data:', response.data);
-                
+
                 if (Array.isArray(response.data)) {
                     setScores(response.data);
                     console.log('Scores set to state:', response.data);
@@ -67,8 +67,8 @@ const LeaderBoardSolar = () => {
                     ) : error ? (
                         <div className="text-center text-red-500 py-4">
                             <p>{error}</p>
-                            <button 
-                                onClick={() => window.location.reload()} 
+                            <button
+                                onClick={() => window.location.reload()}
                                 className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
                             >
                                 Try Again
@@ -86,11 +86,12 @@ const LeaderBoardSolar = () => {
                                         <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Place</th>
                                         <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Player</th>
                                         <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Score</th>
+                                        <th className="px-6 py-3 text-left text-sm font-semibold text-green-600">Play Count</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
                                     {scores.map((score, index) => (
-                                        <tr 
+                                        <tr
                                             key={index}
                                             className={`${
                                                 index < 3 ? 'bg-yellow-50' : 'hover:bg-gray-50'
@@ -106,6 +107,9 @@ const LeaderBoardSolar = () => {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">{score.score}</div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{score.playCount}</div>
                                             </td>
                                         </tr>
                                     ))}
